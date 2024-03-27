@@ -2,7 +2,8 @@
 
 public class MMansionSim 
 {
-	static int reqScore = 33770;
+	static int reqScore = 29970;
+	static final int NEEDED_BAGS = 3;
 	static int score;
 	static int maxL;
 	static int[] amt = {1,2,4,8,15,30,60,120,250,500,1000,2000};
@@ -27,7 +28,7 @@ public class MMansionSim
 	static int basket;
 	static int basketTaps;
 	
-	static boolean bagAvail;
+	static int bagAvail;
 	
 	static int bunnySuit;
 	//static int bunnySuitTaps;
@@ -149,7 +150,7 @@ public class MMansionSim
 		basket = 0;
 		basketTaps = 0;
 		
-		bagAvail = false;
+		bagAvail = 0;
 		
 		bunnySuit = 0;
 		while(score < reqScore)
@@ -227,7 +228,7 @@ public class MMansionSim
 					}
 				}
 			}
-			if(bagAvail)
+			if(bagAvail >= NEEDED_BAGS)
 				tapGarage();
 			else
 				tapWardrobe(allowGarage);
@@ -266,7 +267,7 @@ public class MMansionSim
 			{
 				trapDoor -= 64;
 				puzzleTap += 28;
-				bagAvail = false;
+				bagAvail -= NEEDED_BAGS;
 				eggGenCount[6]++;
 			}
 		}	
@@ -283,7 +284,7 @@ public class MMansionSim
 				wardrobe -= 128;
 				eggTaps += 3;
 				if(allowGarage)
-					bagAvail = true;
+					bagAvail++;
 				eggGenCount[7]++;
 			}
 		}
